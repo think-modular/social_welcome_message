@@ -6,4 +6,4 @@ package: 'Social'
 dependencies:
   - group
   - views_bulk_operations
-  - user_import
+  - csvimport
