@@ -77,7 +77,7 @@ class SocialWelcomeMessageLocalActionsBlock extends BlockBase implements Contain
 
           if ($member) {
             if($member->hasPermission('edit group', $account)) {
-              return AccessResult::allowedIfHasPermission($account, 'set social group settings')->cachePerUser();
+              return AccessResult::allowed();
             }
           }
           elseif ($user->hasRole('administrator')) {

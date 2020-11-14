@@ -25,6 +25,10 @@ class RouteSubscriber extends RouteSubscriberBase {
     if ($route = $collection->get('entity.social_welcome_message.canonical')) {
       $route->setDefault('_controller', '\Drupal\social_welcome_message\Controller\SocialWelcomeMessageController::viewSocialWelcomeMessage');
     }
+    if ($route = $collection->
+      get('entity.social_welcome_message.canonical')) {
+      //$route->setRequirement('_permission', 'translate welcome messages');
+    }
 
   }
 
