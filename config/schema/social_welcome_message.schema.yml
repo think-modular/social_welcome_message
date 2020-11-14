@@ -1,0 +1,33 @@
+social_welcome_message.social_welcome_message.*:
+  type: config_entity
+  label: 'Welcome Message config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    subject:
+      type: label
+      label: 'Subject'
+      translatable: true
+    body:
+      type: text_format
+      label: 'Body'
+      translatable: true
+      format: 'basic_html'
+    body_existing:
+      type: text_format
+      label: 'Body'
+      translatable: true
+      format: 'basic_html'
+    group:
+      label: 'Group'
+      type: mapping
+      mapping:
+        target_id:
+          type: string
+          label: 'Value'
+    uuid:
+      type: string

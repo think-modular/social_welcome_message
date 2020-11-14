@@ -1,0 +1,14 @@
+
+# Welcome Message Logs menu items definition
+entity.social_welcome_message_logger.collection:
+  title: 'Welcome Message Logs list'
+  route_name: entity.social_welcome_message_logger.collection
+  description: 'List Welcome Message Logs entities'
+  parent: system.admin_structure
+  weight: 100
+
+social_welcome_message_logger.admin.structure.settings:
+  title: 'Welcome Message Logs settings'
+  description: 'Configure Welcome Message Logs entities'
+  route_name: social_welcome_message_logger.settings
+  parent: system.admin_structure

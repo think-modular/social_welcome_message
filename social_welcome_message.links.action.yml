@@ -1,0 +1,11 @@
+entity.social_welcome_message.add_form:
+  route_name: entity.social_welcome_message.add_form
+  title: 'Add Welcome Message'
+entity.social_welcome_message.edit_form:
+  route_name: entity.social_welcome_message.edit_form
+  title: 'Edit Welcome Message'
+entity.social_welcome_message_logger.add_form:
+  route_name: entity.social_welcome_message_logger.add_form
+  title: 'Add Welcome Message Logs'
+  appears_on:
+    - entity.social_welcome_message_logger.collection

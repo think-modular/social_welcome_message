@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - social_welcome_message
+    - system
+id: socialwelcomemessageactionsblock
+theme: socialblue
+plugin: social_welcome_message_actions_block
+settings:
+  id: social_welcome_message_actions_block
+  label: 'Social Welcome Message Actions block'
+  provider: social_welcome_message
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '/group/*/membership'
+    negate: false
+    context_mapping: {  }

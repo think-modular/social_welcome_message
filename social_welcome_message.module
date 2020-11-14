@@ -1,0 +1,120 @@
+<?php
+
+/**
+ * @file
+ * Contains social_welcome_message.module.
+ */
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Routing\Access\AccessInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function social_welcome_message_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the social_welcome_message module.
+    case 'help.page.social_welcome_message':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds welcome messages for Open Social') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Alter entity operations.
+ *
+ * @param array $operations
+ *   Operations array as returned by
+ *   \Drupal\Core\Entity\EntityListBuilderInterface::getOperations().
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity on which the linked operations will be performed.
+ */
+function social_welcome_message_entity_operation_alter(array &$operations, \Drupal\Core\Entity\EntityInterface $entity) {
+
+  // Get the current user
+  $user = \Drupal::currentUser();
+
+  if ($entity->getEntityTypeId() == 'group') {
+
+    if ($user->hasPermission('manage all groups')) {
+
+      /*
+
+    $operations['social_welcome_message'] = array(
+      'title' => t('Welcome Message'),
+      'url' => Url::fromRoute('entity.social_welcome_message.add_form',["group" => $entity->id()]),
+      'weight' => 150,
+      );
+
+      */
+
+    }
+  }
+}
+
+/**
+ * Gets current Group entity from the route.
+ *
+ * @param \Drupal\node\NodeInterface|null $node
+ *   (optional) The node object or NULL.
+ *
+ * @return \Drupal\group\Entity\GroupInterface|null
+ *   Returns the group object.
+ */
+function _social_welcome_message_social_group_get_current_group($node = NULL) {
+  $cache = &drupal_static(__FUNCTION__, []);
+
+  // For the same $node input, within the same request the return is always
+  // the same.
+  $nid = NULL;
+  if (is_null($node)) {
+    $nid = -1;
+  }
+  elseif ($node instanceof NodeInterface) {
+    $nid = $node->id();
+  }
+
+  // If we have a cache key and it has a value, we're done early.
+  if (!is_null($nid) && isset($cache[$nid])) {
+    // Translate FALSE (so isset works) back to NULL.
+    return $cache[$nid] ?: NULL;
+  }
+
+  $group = \Drupal::routeMatch()->getParameter('group');
+
+  if (!is_object($group) && !is_null($group)) {
+    $group = \Drupal::entityTypeManager()
+      ->getStorage('group')
+      ->load($group);
+  }
+  else {
+    $node = is_object($node) ? $node : \Drupal::routeMatch()->getParameter('node');
+    if (is_object($node)) {
+      $node_entity = [
+        'target_type' => 'node',
+        'target_id' => $node->id(),
+      ];
+      $gid_from_entity = \Drupal::service('social_group.helper_service')->getGroupFromEntity($node_entity);
+      if ($gid_from_entity !== NULL) {
+        $group = \Drupal::entityTypeManager()
+          ->getStorage('group')
+          ->load($gid_from_entity);
+      }
+    }
+  }
+
+  // If we have a cache key we store the value.
+  if (!is_null($nid)) {
+    // Translate NULL to FALSE so that isset works.
+    $cache[$nid] = $group ?? FALSE;
+  }
+
+  return $group;
+}
+

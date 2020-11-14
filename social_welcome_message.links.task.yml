@@ -1,0 +1,29 @@
+entity.social_welcome_message.edit_form:
+  route_name: entity.social_welcome_message.edit_form
+  title: Edit
+  base_route: entity.social_welcome_message.edit_form
+entity.social_welcome_message.canonical:
+  route_name: entity.social_welcome_message.canonical
+  base_route: entity.social_welcome_message.edit_form
+  title: 'View'
+# Welcome Message Logs routing definition
+social_welcome_message_logger.settings_tab:
+  route_name: social_welcome_message_logger.settings
+  title: 'Settings'
+  base_route: social_welcome_message_logger.settings
+
+entity.social_welcome_message_logger.canonical:
+  route_name: entity.social_welcome_message_logger.canonical
+  base_route: entity.social_welcome_message_logger.canonical
+  title: 'View'
+
+entity.social_welcome_message_logger.edit_form:
+  route_name: entity.social_welcome_message_logger.edit_form
+  base_route: entity.social_welcome_message_logger.canonical
+  title: 'Edit'
+
+entity.social_welcome_message_logger.delete_form:
+  route_name:  entity.social_welcome_message_logger.delete_form
+  base_route:  entity.social_welcome_message_logger.canonical
+  title: Delete
+  weight: 10
