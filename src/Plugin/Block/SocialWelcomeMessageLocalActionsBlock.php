@@ -67,7 +67,7 @@ class SocialWelcomeMessageLocalActionsBlock extends BlockBase implements Contain
     // Load the user for Role check
     $user = User::load($account->id());
 
-    if ($group_id) {
+    if (isset($group_id) && !empty($group_id)) {
 
       $group = Group::load($group_id);
 

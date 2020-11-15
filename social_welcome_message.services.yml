@@ -5,4 +5,4 @@ services:
       - { name: event_subscriber }
   social_welcome_message.tree_builder:
     class: Drupal\social_welcome_message\SocialWelcomeMessageTokenTreeBuilder
-    arguments: ['@token', '@token.entity_mapper', '@cache.data', '@language_manager']  
+    arguments: ['@token', '@token.entity_mapper', '@cache.data', '@language_manager']
