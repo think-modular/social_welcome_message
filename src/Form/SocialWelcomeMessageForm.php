@@ -85,7 +85,7 @@ class SocialWelcomeMessageForm extends EntityForm {
 
     $form['body'] = [
       '#type' => 'text_format',
-      '#title' => $this->t('Body'),
+      '#title' => $this->t('Invitation text new member'),
       '#default_value' => $social_welcome_message->getBody()['value'],
       '#description' => $this->t("Body for the Welcome Message."),
       '#required' => TRUE,
@@ -94,7 +94,7 @@ class SocialWelcomeMessageForm extends EntityForm {
 
     $form['body_existing'] = [
       '#type' => 'text_format',
-      '#title' => $this->t('Body for Existing Users'),
+      '#title' => $this->t('Invitation text existing member'),
       '#default_value' => $social_welcome_message->getBodyExisting()['value'],
       '#description' => $this->t("Body for the Welcome Message."),
       '#required' => TRUE,
