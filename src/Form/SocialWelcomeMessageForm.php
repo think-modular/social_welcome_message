@@ -79,7 +79,6 @@ class SocialWelcomeMessageForm extends EntityForm {
       '#title' => $this->t('Subject'),
       '#maxlength' => 255,
       '#default_value' => $social_welcome_message->getSubject(),
-      '#description' => $this->t("Subject for the Welcome Message."),
       '#required' => TRUE,
     ];
 
@@ -87,19 +86,28 @@ class SocialWelcomeMessageForm extends EntityForm {
       '#type' => 'text_format',
       '#title' => $this->t('Invitation text new member'),
       '#default_value' => $social_welcome_message->getBody()['value'],
-      '#description' => $this->t("Body for the Welcome Message."),
       '#required' => TRUE,
-      '#format' => $social_welcome_message->getBody()['format'],
+      '#format' => 'full_html',
+      '#allowed_formats' => [
+        'full_html'
+      ]
     ];
+
+
+    //$social_welcome_message->getBody()['format']
 
     $form['body_existing'] = [
       '#type' => 'text_format',
       '#title' => $this->t('Invitation text existing member'),
       '#default_value' => $social_welcome_message->getBodyExisting()['value'],
-      '#description' => $this->t("Body for the Welcome Message."),
       '#required' => TRUE,
-      '#format' => $social_welcome_message->getBodyExisting()['format'],
+      '#format' => 'full_html',
+      '#allowed_formats' => [
+        'full_html'
+      ]
     ];
+
+    //$social_welcome_message->getBodyExisting()['format'],
 
     $form['group'] = [
       '#type' => 'entity_autocomplete',
@@ -130,6 +138,8 @@ class SocialWelcomeMessageForm extends EntityForm {
           '[site:name]'
         ]
     ];
+
+    $form['available_tokens']['#access'] = FALSE;
 
 
     $form['available_tokens']['tokens'] = \Drupal::service('social_welcome_message.tree_builder')
