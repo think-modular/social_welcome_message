@@ -7,3 +7,4 @@ dependencies:
   - group
   - views_bulk_operations
   - csvimport
+  - config_translation
