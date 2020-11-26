@@ -39,25 +39,15 @@ use Drupal\group\Entity\GroupInterface;
       $target_language = $this->languageManager
         ->getLanguage($langcode);
 
-      // Access the translation overview for this entity
-      // if special entity call a custom doAccessCheck Method!
-      $config_entity_id = \Drupal::entityTypeManager()
-        ->getDefinition($mapper
-        ->getType())->id();
-
-      $config_entity = $mapper->getConfigData(); 
-
-      if ($config_entity_id == 'social_welcome_message') {
-
-      //kint($config_entity);
-
-      return $this
-        ->doCheckAccessEntity($account, $mapper, $source_language, $target_language, $config_entity);
+      if ($route_match->getParameters()->get('plugin_id') === 'social_welcome_message') {
+        return $this
+          ->doCheckAccessEntity($account, $mapper, $source_language, $target_language);
       }
       else {
         return $this
           ->doCheckAccess($account, $mapper, $source_language, $target_language);
       }
+
     } catch (ConfigMapperLanguageException $exception) {
       return AccessResult::forbidden();
     }
@@ -97,7 +87,7 @@ use Drupal\group\Entity\GroupInterface;
       ->andIf(AccessResult::allowedIf($access));
   }
 
-  protected function doCheckAccessEntity(AccountInterface $account, ConfigMapperInterface $mapper, $source_language = NULL, $target_language = NULL, $entity) {
+  protected function doCheckAccessEntity(AccountInterface $account, ConfigMapperInterface $mapper, $source_language = NULL, $target_language = NULL) {
 
     $access = $account
       ->hasPermission('translate welcome messages') &&

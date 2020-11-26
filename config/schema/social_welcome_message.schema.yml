@@ -16,12 +16,12 @@ social_welcome_message.social_welcome_message.*:
       type: text_format
       label: 'Body'
       translatable: true
-      format: 'basic_html'
+      format: ''
     body_existing:
       type: text_format
       label: 'Body'
       translatable: true
-      format: 'basic_html'
+      format: ''
     group:
       label: 'Group'
       type: mapping

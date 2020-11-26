@@ -47,27 +47,16 @@ class SocialWelcomeMessageTranslationOverviewAccess extends ConfigTranslationOve
     }
 
     $source_language = $this->languageManager
-      ->getLanguage($langcode);
+      ->getLanguage($langcode);   
 
-      //kint($mapper->getEntityManager());
-
-    // Access the translation overview for this entity
-    // if special entity call a custom doAccessCheck Method!
-    $config_entity_id = \Drupal::entityTypeManager()
-    	->getDefinition($mapper
-      ->getType())->id();
-
-    $config_entity = $mapper->getConfigData(); 
-
-    if ($config_entity_id == 'social_welcome_message') {
-
-    	return $this
-      ->doCheckAccessEntity($account, $mapper, $source_language, $config_entity);
-
+    if ($route_match->getParameters()->get('plugin_id') === 'social_welcome_message') {
+      return $this
+        ->doCheckAccessEntity($account, $mapper, $source_language);
     }
     
     return $this
       ->doCheckAccess($account, $mapper, $source_language);
+
   }
 
   /**
@@ -103,7 +92,7 @@ class SocialWelcomeMessageTranslationOverviewAccess extends ConfigTranslationOve
 
   }
 
-  protected function doCheckAccessEntity(AccountInterface $account, ConfigMapperInterface $mapper, $source_language = NULL, $entity) {
+  protected function doCheckAccessEntity(AccountInterface $account, ConfigMapperInterface $mapper, $source_language = NULL) {
 
   	$access = $account
       ->hasPermission('translate welcome messages') && $mapper
