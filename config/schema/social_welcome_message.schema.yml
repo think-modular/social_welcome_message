@@ -14,12 +14,12 @@ social_welcome_message.social_welcome_message.*:
       translatable: true
     body:
       type: text_format
-      label: 'Body'
+      label: 'Invitation text new member'
       translatable: true
       format: ''
     body_existing:
       type: text_format
-      label: 'Body'
+      label: 'Invitation text existing member'
       translatable: true
       format: ''
     group:

@@ -100,7 +100,7 @@ class SocialWelcomeMessageForm extends EntityForm {
       '#type' => 'text_format',
       '#title' => $this->t('Invitation text existing member'),
       '#default_value' => $social_welcome_message->getBodyExisting()['value'],
-      '#required' => TRUE,
+      '#required' => FALSE,
       '#format' => 'full_html',
       '#allowed_formats' => [
         'full_html'

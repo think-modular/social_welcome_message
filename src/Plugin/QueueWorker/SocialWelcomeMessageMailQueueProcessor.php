@@ -194,7 +194,7 @@ class SocialWelcomeMessageMailQueueProcessor extends QueueWorkerBase implements 
     $body_special_tokens = $this->token->replace($body, $special_token_context, $special_token_options);
     $body_existing_special_tokens = $this->token->replace($body_existing, $special_token_context, $special_token_options);
 
-    if ($user->getLastLoginTime() > 0) {
+    if ($user->getLastLoginTime() > 0 && !empty($body_existing)) {
 
       $body_special_tokens = $body_existing_special_tokens;
 
