@@ -1,7 +1,7 @@
 name: 'Social Welcome Message'
 type: module
 description: 'Adds welcome messages for Open Social'
-version: '8.x-1.1'
+version: '8.x-1.2'
 core: 8.x
 package: 'Social'
 dependencies:
