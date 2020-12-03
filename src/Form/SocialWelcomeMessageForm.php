@@ -51,6 +51,8 @@ class SocialWelcomeMessageForm extends EntityForm {
 
     }
 
+    $form['#attached']['library'][] = 'social_welcome_message/design';
+
 
     $form['label'] = [
       '#type' => 'textfield',
@@ -82,9 +84,21 @@ class SocialWelcomeMessageForm extends EntityForm {
       '#required' => TRUE,
     ];
 
+    $form['body_label'] = [
+      '#type' => 'label',
+      '#title' => $this->t('Invitation text new member')
+    ];
+
+    $body_help_html  = '<span class="body-special-help">(!)text in between(!)</span> = must be adjusted/filled manually, remove (!)(!) afterwards<br>'; 
+    $body_help_html .= '<span class="body-special-help">[text in between]</span> = filled automatically, do not adjust and do not delete []';
+	
+
+    $form['body_help'] = [
+      '#markup' => $body_help_html
+    ];
+
     $form['body'] = [
       '#type' => 'text_format',
-      '#title' => $this->t('Invitation text new member'),
       '#default_value' => $social_welcome_message->getBody()['value'],
       '#required' => TRUE,
       '#format' => 'full_html',
