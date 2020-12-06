@@ -17,13 +17,11 @@ class SocialWelcomeMessageServiceProvider extends ServiceProviderBase {
    * {@inheritdoc}
    */
   public function alter(ContainerBuilder $container) {
-    // Overrides language_manager class to test domain language negotiation.
-    // Adds entity_type.manager service as an additional argument.
-    $definition = $container->getDefinition('config_translation.access.overview');
-    $definition->setClass('\Drupal\social_welcome_message\Access\SocialWelcomeMessageTranslationOverviewAccess');
+    //$definition = $container->getDefinition('config_translation.access.overview');
+    //$definition->setClass('\Drupal\social_welcome_message\Access\SocialWelcomeMessageTranslationOverviewAccess');
 
-    $definition = $container->getDefinition('config_translation.access.form');
-    $definition->setClass('\Drupal\social_welcome_message\Access\SocialWelcomeMessageTranslationFormAccess');
+    //$definition = $container->getDefinition('config_translation.access.form');
+    //$definition->setClass('\Drupal\social_welcome_message\Access\SocialWelcomeMessageTranslationFormAccess');
 
 
   }
