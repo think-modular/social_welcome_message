@@ -108,11 +108,21 @@ class SocialWelcomeMessageForm extends EntityForm {
     ];
 
 
+    $form['body_existing_label'] = [
+      '#type' => 'label',
+      '#title' => $this->t('Invitation text existing member')
+    ];
+
+
+    $form['body_existing_help'] = [
+      '#markup' => $body_help_html
+    ];
+
+
     //$social_welcome_message->getBody()['format']
 
     $form['body_existing'] = [
       '#type' => 'text_format',
-      '#title' => $this->t('Invitation text existing member'),
       '#default_value' => $social_welcome_message->getBodyExisting()['value'],
       '#required' => FALSE,
       '#format' => 'full_html',
